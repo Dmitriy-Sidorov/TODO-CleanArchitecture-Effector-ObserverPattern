@@ -1,12 +1,14 @@
 import React from 'react';
 
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container } from '@mui/material';
+
+import { TaskList } from 'presentation';
 
 function App() {
   return (
     <Container maxWidth="sm">
       <Box sx={{ my: 4 }}>
-        <Typography>Test</Typography>
+        <TaskList />
       </Box>
     </Container>
   );
