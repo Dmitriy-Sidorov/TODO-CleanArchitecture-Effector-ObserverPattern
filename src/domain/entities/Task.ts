@@ -1,6 +1,6 @@
 import { InterfacesTask } from 'domain/interfaces';
 
-export default class Task implements InterfacesTask {
+export class Task implements InterfacesTask {
   id: number;
   description: string;
   completed: boolean;

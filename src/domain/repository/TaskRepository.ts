@@ -1,6 +1,6 @@
 import { TodoInterface, TodoService } from 'data/api/services';
 
-class TaskRepository {
+export class TaskRepository {
   private apiService: typeof TodoService;
 
   constructor() {
@@ -12,6 +12,16 @@ class TaskRepository {
 
     return tasksData.data.todos;
   }
-}
 
-export default TaskRepository;
+  async updateTask({
+    id,
+    completed,
+  }: {
+    id: number;
+    completed: boolean;
+  }): Promise<TodoInterface.Task> {
+    const taskData = await this.apiService.updateTask({ id, completed });
+
+    return taskData.data;
+  }
+}

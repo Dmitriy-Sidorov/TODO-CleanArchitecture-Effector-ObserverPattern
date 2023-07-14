@@ -9,6 +9,8 @@ import {
   ListItemText,
 } from '@mui/material';
 
+import { checkedTask } from 'presentation/view-models';
+
 interface TaskItemProps {
   id: number;
   description: string;
@@ -28,7 +30,9 @@ export function TaskItem({ id, description, completed }: TaskItemProps) {
     >
       <ListItemButton
         role={undefined}
-        // onClick={handleToggle(value)}
+        onClick={() => {
+          checkedTask({ id, checked: !completed });
+        }}
         dense
       >
         <ListItemIcon>

@@ -1,8 +1,8 @@
 import { TodoInterface } from 'data/api/services';
-import Task from 'domain/entities/Task';
-import TaskRepository from 'domain/repository/TaskRepository';
+import { Task } from 'domain/entities';
+import { TaskRepository } from 'domain/repository';
 
-export default class TaskUseCase {
+export class TaskUseCase {
   private taskRepository: TaskRepository;
 
   constructor() {
@@ -16,6 +16,22 @@ export default class TaskUseCase {
       const { id, todo, completed } = taskData;
 
       return new Task({ id, description: todo, completed });
+    });
+  }
+
+  async updateTask({
+    id,
+    completed,
+  }: {
+    id: number;
+    completed: boolean;
+  }): Promise<Task> {
+    const taskData = await this.taskRepository.updateTask({ id, completed });
+
+    return new Task({
+      id: taskData.id,
+      description: taskData.todo,
+      completed: taskData.completed,
     });
   }
 }
