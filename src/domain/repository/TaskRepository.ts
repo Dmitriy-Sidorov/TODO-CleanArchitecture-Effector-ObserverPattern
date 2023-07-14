@@ -1,5 +1,4 @@
-import { TodoService } from 'data/api/services';
-import Task from 'domain/entities/Task';
+import { TodoInterface, TodoService } from 'data/api/services';
 
 class TaskRepository {
   private apiService: typeof TodoService;
@@ -8,20 +7,11 @@ class TaskRepository {
     this.apiService = TodoService;
   }
 
-  async getAllTasks(): Promise<Task[]> {
-    // Вызовите метод API для получения списка задач
+  async getAllTasks(): Promise<TodoInterface.Task[]> {
     const tasksData = await this.apiService.getAll();
 
-    // Преобразуйте данные из API в экземпляры класса Task
-    const tasks = tasksData.data.map((taskData: any) => {
-      const { id, title, description, completed } = taskData;
-      return new Task(id, title, description, completed);
-    });
-
-    return tasks;
+    return tasksData.data.todos;
   }
-
-  // Другие методы репозитория для создания, обновления и удаления задач
 }
 
 export default TaskRepository;

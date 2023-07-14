@@ -1,17 +1,12 @@
-class Task {
-  id: string;
-  title: string;
+import { InterfacesTask } from 'domain/interfaces';
+
+export default class Task implements InterfacesTask {
+  id: number;
   description: string;
   completed: boolean;
 
-  constructor(
-    id: string,
-    title: string,
-    description: string,
-    completed: boolean,
-  ) {
+  constructor({ id, description, completed }: InterfacesTask) {
     this.id = id;
-    this.title = title;
     this.description = description;
     this.completed = completed;
   }
@@ -23,8 +18,4 @@ class Task {
   markAsIncomplete() {
     this.completed = false;
   }
-
-  // Другие методы и логика, связанные с задачами
 }
-
-export default Task;
